@@ -17,6 +17,7 @@ import {
   SiAdobephotoshop,
   SiAdobeillustrator,
   SiCanva,
+  SiPython,
 } from "react-icons/si";
 
 const SkillsSection = () => {
@@ -92,6 +93,11 @@ const SkillsSection = () => {
         {
           name: "TypeScript",
           icon: <SiTypescript className="text-2xl text-[#3178C6]" />,
+          level: 80,
+        },
+        {
+          name: "Python",
+          icon: <SiPython className="text-2xl text-yellow-600" />,
           level: 80,
         },
       ],

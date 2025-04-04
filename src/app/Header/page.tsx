@@ -1,15 +1,17 @@
-// components/Header.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const navLinks = [
-    { name: "Home", href: "/" },
+    { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
@@ -20,8 +22,32 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleHashLinkClick = (href: string) => {
+    if (href.startsWith("#")) {
+      // If we're already on the home page, just scroll to the section
+      if (pathname === "/") {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+        setIsOpen(false);
+      } else {
+        // If we're on another page, navigate to home first then scroll
+        router.push(`/${href}`);
+      }
+    } else {
+      // Regular link
+      setIsOpen(false);
+    }
+  };
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
   return (
-    <header className="w-full top-0 z-50 bg-gradient-to-br from-gray-900 via-black to-gray-800 shadow-lg">
+    <header className="w-full fixed top-0 z-50 bg-gradient-to-br from-gray-900 via-black to-gray-800 shadow-lg">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           {/* Logo/Name */}
@@ -40,27 +66,27 @@ const Header = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:block">
+          <nav className="hidden z-50 md:z-50 md:block">
             <motion.ul
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
               className="flex space-x-6"
             >
-              {navLinks.map((link, index) => (
+              {navLinks.map((link) => (
                 <motion.li
                   key={link.name}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <Link
-                    href={link.href}
+                  <button
+                    onClick={() => handleHashLinkClick(link.href)}
                     className="text-white hover:text-pink-100 font-medium transition-colors relative group"
                   >
                     {link.name}
                     <span className="absolute left-0 bottom-0 h-0.5 bg-white w-0 group-hover:w-full transition-all duration-300"></span>
-                  </Link>
+                  </button>
                 </motion.li>
               ))}
             </motion.ul>
@@ -130,13 +156,12 @@ const Header = () => {
                     transition={{ duration: 0.3 }}
                     whileHover={{ x: 5 }}
                   >
-                    <Link
-                      href={link.href}
-                      className="block text-white hover:text-pink-100 font-medium py-2 px-4 rounded transition-colors"
-                      onClick={() => setIsOpen(false)}
+                    <button
+                      onClick={() => handleHashLinkClick(link.href)}
+                      className="block text-white hover:text-pink-100 font-medium py-2 px-4 rounded transition-colors w-full text-left"
                     >
                       {link.name}
-                    </Link>
+                    </button>
                   </motion.li>
                 ))}
               </motion.ul>

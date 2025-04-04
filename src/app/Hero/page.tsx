@@ -101,7 +101,7 @@ const Hero = () => {
   return (
     <section
       ref={ref}
-      className="relative h-[850px] w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 md:h-[570px]"
+      className="relative mt-14 h-[850px] w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 md:h-[570px]"
       id="home"
     >
       {/* Preloader Animation */}
