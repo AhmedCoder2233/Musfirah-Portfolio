@@ -24,26 +24,42 @@ const Header = () => {
 
   const handleHashLinkClick = (href: string) => {
     if (href.startsWith("#")) {
-      // If we're already on the home page, just scroll to the section
+      // Close mobile menu first
+      setIsOpen(false);
+
+      // If we're already on the home page, scroll to the section
       if (pathname === "/") {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-        setIsOpen(false);
+        // Small timeout to ensure menu is closed before scrolling
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
       } else {
-        // If we're on another page, navigate to home first then scroll
+        // If we're on another page, navigate to home with hash
         router.push(`/${href}`);
       }
-    } else {
-      // Regular link
-      setIsOpen(false);
     }
   };
 
   // Close mobile menu when route changes
   useEffect(() => {
-    setIsOpen(false);
+    const handleRouteChange = () => {
+      setIsOpen(false);
+
+      // If we've landed on home page with a hash, scroll to section
+      if (pathname === "/" && window.location.hash) {
+        setTimeout(() => {
+          const element = document.querySelector(window.location.hash);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      }
+    };
+
+    handleRouteChange();
   }, [pathname]);
 
   return (
@@ -60,6 +76,7 @@ const Header = () => {
             <Link
               href="/"
               className="text-2xl font-bold text-white hover:text-pink-100 transition-colors"
+              onClick={() => setIsOpen(false)}
             >
               Musfirah Tabassum
             </Link>
