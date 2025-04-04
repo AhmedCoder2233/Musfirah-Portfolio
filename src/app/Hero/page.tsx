@@ -301,7 +301,7 @@ const Hero = () => {
                   boxShadow: "0 10px 25px -5px rgba(0, 255, 255, 0.3)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                href="#contact"
+                href="mailto:musfirahtabassum1510@gmail.com"
                 className="px-5 py-2 sm:px-6 sm:py-3 border-2 border-cyan-400 text-cyan-400 rounded-full font-medium shadow-lg hover:bg-cyan-400 hover:text-gray-900 transition-all relative overflow-hidden group text-sm sm:text-base"
               >
                 <span className="relative z-10">Hire Me</span>

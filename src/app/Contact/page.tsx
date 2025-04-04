@@ -26,7 +26,7 @@ const ContactSection = () => {
   return (
     <section
       ref={ref}
-      id="contact"
+      id="#contact"
       className="relative w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 py-16 px-4 min-h-[80vh]"
     >
       {/* Floating contact elements */}
@@ -131,23 +131,9 @@ const ContactSection = () => {
                 <div>
                   <a
                     href="mailto:musfirah@example.com"
-                    className="text-gray-300 hover:text-cyan-400 transition-colors"
+                    className="text-gray-300 text-sm hover:text-cyan-400 transition-colors"
                   >
-                    musfirah@example.com
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="mt-1 text-cyan-400">
-                  <FaPhone className="text-lg" />
-                </div>
-                <div>
-                  <a
-                    href="tel:+923001234567"
-                    className="text-gray-300 hover:text-cyan-400 transition-colors"
-                  >
-                    +92 300 1234567
+                    musfirahtabassum1510@gmail.com
                   </a>
                 </div>
               </div>
@@ -167,7 +153,7 @@ const ContactSection = () => {
             </h3>
             <div className="grid grid-cols-2 gap-4">
               <a
-                href="https://github.com/"
+                href="https://github.com/Musfirah911"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg border border-gray-700 hover:bg-gray-700 hover:text-cyan-400 transition-all"
@@ -176,7 +162,7 @@ const ContactSection = () => {
                 <span>GitHub</span>
               </a>
               <a
-                href="https://linkedin.com/"
+                href="https://www.linkedin.com/in/musfirah-tabassum-911-913-khum/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg border border-gray-700 hover:bg-blue-600 hover:text-white transition-all"
@@ -185,7 +171,7 @@ const ContactSection = () => {
                 <span>LinkedIn</span>
               </a>
               <a
-                href="https://instagram.com/"
+                href="https://www.instagram.com/musfirah_tabassum?igsh=MWcydzZpa2RlY2Qzdg%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg border border-gray-700 hover:bg-pink-600 hover:text-white transition-all"
@@ -194,7 +180,7 @@ const ContactSection = () => {
                 <span>Instagram</span>
               </a>
               <a
-                href="https://discord.com/"
+                href="https://discord.com/users/musfirah_tabassum"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg border border-gray-700 hover:bg-indigo-600 hover:text-white transition-all"
@@ -218,7 +204,7 @@ const ContactSection = () => {
             </h3>
             <div className="grid grid-cols-1 gap-4">
               <a
-                href="https://fiverr.com/"
+                href="https://www.fiverr.com/musfirah_911/craft-pixel-perfect-and-modern-and-interactive-website-ui?utm_medium=shared&utm_source=copy_link&utm_campaign=base_gig_create_share&utm_term=bdGPezX&view=gig&gig_id=419536147"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg border border-gray-700 hover:bg-green-500 hover:text-white transition-all"
@@ -227,16 +213,7 @@ const ContactSection = () => {
                 <span>Fiverr</span>
               </a>
               <a
-                href="https://upwork.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg border border-gray-700 hover:bg-green-600 hover:text-white transition-all"
-              >
-                <SiUpwork className="text-xl" />
-                <span>Upwork</span>
-              </a>
-              <a
-                href="mailto:musfirah@example.com"
+                href="mailto:musfirahtabassum1510@gmail.com"
                 className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg border border-gray-700 hover:bg-red-500 hover:text-white transition-all"
               >
                 <SiGmail className="text-xl" />

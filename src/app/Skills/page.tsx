@@ -101,7 +101,7 @@ const SkillsSection = () => {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 md:h-[800px] px-4 py-20"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 md:h-[800px] px-4 py-20" id="skills"
     >
       {/* Floating tech elements */}
       <motion.div

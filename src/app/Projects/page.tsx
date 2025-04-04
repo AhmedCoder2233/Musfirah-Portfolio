@@ -79,8 +79,8 @@ const ProjectsSection = () => {
   return (
     <section
       ref={ref}
-      id="projects"
-      className="relative w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 py-12 md:py-20 px-4 min-h-screen"
+      id="#projects"
+      className="relative w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 py-12 md:py-20 px-4 min-h-screen" 
     >
       {/* Floating tech elements */}
       <motion.div

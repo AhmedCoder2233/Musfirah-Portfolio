@@ -33,7 +33,7 @@ const AboutSection = () => {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 md:h-[700px] px-4"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 md:h-[700px] px-4" id="about"
     >
       {/* Subtle floating molecules */}
       <motion.div
