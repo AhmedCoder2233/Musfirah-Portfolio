@@ -129,7 +129,7 @@ const Header = () => {
               {theme === "dark" ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-yellow-300"
+                  className="h-6 w-6 text-blue-500"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -144,7 +144,7 @@ const Header = () => {
               ) : (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-green-500"
+                  className="h-6 w-6 text-blue-500"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
