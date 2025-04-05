@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
   const pathname = usePathname();
   const router = useRouter();
 
@@ -17,6 +18,38 @@ const Header = () => {
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ];
+
+  useEffect(() => {
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      setTheme(systemPrefersDark ? "dark" : "light");
+    }
+  }, []);
+
+  useEffect(() => {
+    // Apply the theme class to the document
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    } else {
+      document.documentElement.classList.add("light");
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Save the theme preference
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -63,7 +96,7 @@ const Header = () => {
   }, [pathname]);
 
   return (
-    <header className="w-full fixed top-0 z-50 bg-gradient-to-br from-gray-900 via-black to-gray-800 shadow-lg">
+    <header className="w-full fixed top-0 z-50 bg-gradient-to-br from-gray-900 via-black to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 shadow-lg">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           {/* Logo/Name */}
@@ -75,76 +108,121 @@ const Header = () => {
           >
             <Link
               href="/"
-              className="text-2xl font-bold text-white hover:text-pink-100 transition-colors"
+              className="text-2xl font-bold text-white dark:text-black hover:text-pink-100 dark:hover:text-pink-700 transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Musfirah Tabassum
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden z-50 md:z-50 md:block">
-            <motion.ul
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="flex space-x-6"
-            >
-              {navLinks.map((link) => (
-                <motion.li
-                  key={link.name}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <button
-                    onClick={() => handleHashLinkClick(link.href)}
-                    className="text-white hover:text-pink-100 font-medium transition-colors relative group"
-                  >
-                    {link.name}
-                    <span className="absolute left-0 bottom-0 h-0.5 bg-white w-0 group-hover:w-full transition-all duration-300"></span>
-                  </button>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="flex items-center gap-4">
+            {/* Theme Toggle Button */}
             <motion.button
-              onClick={toggleMenu}
-              className="text-white focus:outline-none"
-              aria-label="Toggle menu"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${
+                theme === "dark" ? "light" : "dark"
+              } mode`}
+              className="p-2 rounded-full focus:outline-none"
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <div className="w-6 flex flex-col items-end space-y-1.5">
-                <motion.span
-                  animate={{
-                    rotate: isOpen ? 45 : 0,
-                    y: isOpen ? 8 : 0,
-                    width: isOpen ? "100%" : "100%",
-                  }}
-                  className="block h-0.5 bg-white rounded-full"
-                  style={{ originX: 0 }}
-                ></motion.span>
-                <motion.span
-                  animate={{
-                    opacity: isOpen ? 0 : 1,
-                    width: isOpen ? 0 : "80%",
-                  }}
-                  className="block h-0.5 bg-white rounded-full"
-                ></motion.span>
-                <motion.span
-                  animate={{
-                    rotate: isOpen ? -45 : 0,
-                    y: isOpen ? -8 : 0,
-                    width: isOpen ? "100%" : "60%",
-                  }}
-                  className="block h-0.5 bg-white rounded-full"
-                  style={{ originX: 0 }}
-                ></motion.span>
-              </div>
+              {theme === "dark" ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-yellow-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-gray-800"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                  />
+                </svg>
+              )}
             </motion.button>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden z-50 md:z-50 md:block">
+              <motion.ul
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="flex space-x-6"
+              >
+                {navLinks.map((link) => (
+                  <motion.li
+                    key={link.name}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <button
+                      onClick={() => handleHashLinkClick(link.href)}
+                      className="text-white dark:text-black hover:text-pink-100 dark:hover:text-pink-700 font-medium transition-colors relative group"
+                    >
+                      {link.name}
+                      <span className="absolute left-0 bottom-0 h-0.5 bg-white dark:bg-black w-0 group-hover:w-full transition-all duration-300"></span>
+                    </button>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <motion.button
+                onClick={toggleMenu}
+                className="text-white dark:text-black focus:outline-none"
+                aria-label="Toggle menu"
+                whileTap={{ scale: 0.9 }}
+              >
+                <div className="w-6 flex flex-col items-end space-y-1.5">
+                  <motion.span
+                    animate={{
+                      rotate: isOpen ? 45 : 0,
+                      y: isOpen ? 8 : 0,
+                      width: isOpen ? "100%" : "100%",
+                    }}
+                    className="block h-0.5 bg-white dark:bg-black rounded-full"
+                    style={{ originX: 0 }}
+                  ></motion.span>
+                  <motion.span
+                    animate={{
+                      opacity: isOpen ? 0 : 1,
+                      width: isOpen ? 0 : "80%",
+                    }}
+                    className="block h-0.5 bg-white dark:bg-black rounded-full"
+                  ></motion.span>
+                  <motion.span
+                    animate={{
+                      rotate: isOpen ? -45 : 0,
+                      y: isOpen ? -8 : 0,
+                      width: isOpen ? "100%" : "60%",
+                    }}
+                    className="block h-0.5 bg-white dark:bg-black rounded-full"
+                    style={{ originX: 0 }}
+                  ></motion.span>
+                </div>
+              </motion.button>
+            </div>
           </div>
         </div>
 
@@ -175,7 +253,7 @@ const Header = () => {
                   >
                     <button
                       onClick={() => handleHashLinkClick(link.href)}
-                      className="block text-white hover:text-pink-100 font-medium py-2 px-4 rounded transition-colors w-full text-left"
+                      className="block text-white dark:text-black hover:text-pink-100 dark:hover:text-pink-700 font-medium py-2 px-4 rounded transition-colors w-full text-left"
                     >
                       {link.name}
                     </button>

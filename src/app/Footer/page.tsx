@@ -5,7 +5,7 @@ import { FaHeart } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="relative w-full bg-gray-900 border-t border-gray-800 py-8 px-4">
+    <footer className="relative w-full bg-gray-900 dark:bg-white border-t border-gray-800 py-8 px-4">
       {/* Glow effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-32 h-32 rounded-full bg-cyan-400 blur-3xl opacity-10"></div>

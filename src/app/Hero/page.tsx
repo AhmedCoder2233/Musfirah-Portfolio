@@ -32,7 +32,8 @@ const Hero = () => {
   // Initialize particles
   useEffect(() => {
     const newParticles = [];
-    const colors = ["#00F0FF", "#00E5FF", "#00D4FF", "#00C0FF"]; // Aqua/teal colors
+    const darkColors = ["#00F0FF", "#00E5FF", "#00D4FF", "#00C0FF"]; // Aqua/teal colors for dark mode
+    const lightColors = ["#0077B6", "#0096C7", "#00B4D8", "#48CAE4"]; // Blue colors for light mode
 
     for (let i = 0; i < 80; i++) {
       newParticles.push({
@@ -43,7 +44,9 @@ const Hero = () => {
         opacity: Math.random() * 0.6 + 0.2,
         speedX: (Math.random() - 0.5) * 0.3,
         speedY: Math.random() * 0.8 + 0.5,
-        color: colors[Math.floor(Math.random() * colors.length)],
+        color: document.documentElement.classList.contains("dark")
+          ? darkColors[Math.floor(Math.random() * darkColors.length)]
+          : lightColors[Math.floor(Math.random() * lightColors.length)],
       });
     }
 
@@ -101,7 +104,7 @@ const Hero = () => {
   return (
     <section
       ref={ref}
-      className="relative mt-14 h-[850px] w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 md:h-[570px]"
+      className="relative mt-14 h-[850px] w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 md:h-[570px]"
       id="home"
     >
       {/* Preloader Animation */}
@@ -111,13 +114,13 @@ const Hero = () => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-90 px-4"
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black dark:bg-white bg-opacity-90 dark:bg-opacity-90 px-4"
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="text-2xl sm:text-3xl md:text-4xl font-bold text-cyan-400 mb-6 text-center"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-cyan-400 dark:text-cyan-600 mb-6 text-center"
             >
               Welcome to Musfirah's Portfolio
             </motion.div>
@@ -126,10 +129,10 @@ const Hero = () => {
               initial={{ width: 0 }}
               animate={{ width: ["0%", "70%"] }}
               transition={{ duration: 2, ease: "easeInOut" }}
-              className="h-2 bg-cyan-200 rounded-full w-full max-w-md mb-4 relative overflow-hidden"
+              className="h-2 bg-cyan-200 dark:bg-cyan-300 rounded-full w-full max-w-md mb-4 relative overflow-hidden"
             >
               <motion.div
-                className="absolute top-0 left-0 h-full bg-cyan-400 rounded-full"
+                className="absolute top-0 left-0 h-full bg-cyan-400 dark:bg-cyan-600 rounded-full"
                 initial={{ width: "0%" }}
                 animate={{ width: `${loadingProgress}%` }}
                 transition={{ duration: 0.3 }}
@@ -140,7 +143,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
-              className="text-cyan-100 text-center max-w-md"
+              className="text-cyan-100 dark:text-cyan-800 text-center max-w-md"
             >
               Crafting digital experiences with passion and precision
             </motion.p>
@@ -184,13 +187,13 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.3 }}
         transition={{ delay: 1, duration: 1 }}
-        className="absolute top-1/4 -left-20 w-64 h-64 rounded-full bg-cyan-400 blur-3xl opacity-20"
+        className="absolute top-1/4 -left-20 w-64 h-64 rounded-full bg-cyan-400 dark:bg-cyan-600 blur-3xl opacity-20 dark:opacity-15"
       />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.3 }}
         transition={{ delay: 1.2, duration: 1 }}
-        className="absolute bottom-1/4 -right-20 w-64 h-64 rounded-full bg-teal-400 blur-3xl opacity-20"
+        className="absolute bottom-1/4 -right-20 w-64 h-64 rounded-full bg-teal-400 dark:bg-teal-600 blur-3xl opacity-20 dark:opacity-15"
       />
 
       <div className="container mx-auto px-4 z-10 -mt-5 md:mt-0">
@@ -215,10 +218,10 @@ const Hero = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-6xl -mt-20 sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
+                className="text-6xl -mt-20 sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white dark:text-gray-900 mb-4"
               >
                 I'm{" "}
-                <span className="text-cyan-400 bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">
+                <span className="text-cyan-400 dark:text-cyan-600 bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 dark:from-cyan-600 dark:to-teal-600">
                   Musfirah Tabassum
                 </span>
               </motion.h1>
@@ -228,7 +231,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="h-16 mb-8 text-lg sm:text-xl md:text-2xl text-gray-300 font-medium"
+              className="h-16 mb-8 text-lg sm:text-xl md:text-2xl text-gray-300 dark:text-gray-600 font-medium"
             >
               <TypeAnimation
                 sequence={[
@@ -244,7 +247,7 @@ const Hero = () => {
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}
-                className="text-cyan-400"
+                className="text-cyan-400 dark:text-cyan-600"
               />
             </motion.div>
 
@@ -254,12 +257,12 @@ const Hero = () => {
               transition={{ delay: 0.8, duration: 1 }}
               className="mb-6"
             >
-              <p className="text-gray-300 mb-4 -mt-10 max-w-lg text-sm sm:text-base">
+              <p className="text-gray-300 dark:text-gray-600 mb-4 -mt-10 max-w-lg text-sm sm:text-base">
                 Crafting elegant solutions to complex problems with clean,
                 efficient code. Passionate about building intuitive user
                 experiences that make an impact.
               </p>
-              <div className="text-xs sm:text-sm text-cyan-300 italic min-h-[40px] sm:min-h-[60px]">
+              <div className="text-xs sm:text-sm text-cyan-300 dark:text-cyan-700 italic min-h-[40px] sm:min-h-[60px]">
                 <TypeAnimation
                   sequence={[randomQuote, 10000, "", 1000]}
                   wrapper="span"
@@ -286,11 +289,11 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
                 href="/mf.pdf"
                 download
-                className="px-5 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-gray-900 rounded-full font-medium shadow-lg hover:from-cyan-400 hover:to-teal-400 transition-all relative overflow-hidden group text-sm sm:text-base"
+                className="px-5 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-cyan-500 to-teal-500 dark:from-cyan-600 dark:to-teal-600 text-gray-900 rounded-full font-medium shadow-lg hover:from-cyan-400 hover:to-teal-400 dark:hover:from-cyan-500 dark:hover:to-teal-500 transition-all relative overflow-hidden group text-sm sm:text-base"
               >
                 <span className="relative z-10">Download CV</span>
                 <motion.span
-                  className="absolute inset-0 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute inset-0 bg-cyan-400 dark:bg-cyan-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                   initial={{ scale: 0 }}
                   whileHover={{ scale: 1 }}
                 />
@@ -302,11 +305,11 @@ const Hero = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 href="mailto:musfirahtabassum1510@gmail.com"
-                className="px-5 py-2 sm:px-6 sm:py-3 border-2 border-cyan-400 text-cyan-400 rounded-full font-medium shadow-lg hover:bg-cyan-400 hover:text-gray-900 transition-all relative overflow-hidden group text-sm sm:text-base"
+                className="px-5 py-2 sm:px-6 sm:py-3 border-2 border-cyan-400 dark:border-cyan-600 text-cyan-400 dark:text-cyan-600 rounded-full font-medium shadow-lg hover:bg-cyan-400 hover:text-gray-900 dark:hover:bg-cyan-600 dark:hover:text-gray-100 transition-all relative overflow-hidden group text-sm sm:text-base"
               >
                 <span className="relative z-10">Hire Me</span>
                 <motion.span
-                  className="absolute inset-0 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute inset-0 bg-cyan-400 dark:bg-cyan-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                   initial={{ scale: 0 }}
                   whileHover={{ scale: 1 }}
                 />
@@ -337,7 +340,7 @@ const Hero = () => {
                 }}
                 className="relative z-10"
               >
-                <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full border-4 border-cyan-300 overflow-hidden shadow-xl bg-white relative group">
+                <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full border-4 border-cyan-300 dark:border-cyan-600 overflow-hidden shadow-xl bg-white relative group">
                   <Image
                     src="/mt.jpg"
                     alt="Musfirah Tabassum"
@@ -345,7 +348,7 @@ const Hero = () => {
                     height={320}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-cyan-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-cyan-400 dark:bg-cyan-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                 </div>
               </motion.div>
 
@@ -359,7 +362,7 @@ const Hero = () => {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="absolute -top-6 -left-6 sm:-top-8 sm:-left-8 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-cyan-300 opacity-50"
+                className="absolute -top-6 -left-6 sm:-top-8 sm:-left-8 w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-cyan-300 dark:border-cyan-600 opacity-50"
               />
               <motion.div
                 animate={{
@@ -370,7 +373,7 @@ const Hero = () => {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="absolute -bottom-6 -right-6 sm:-bottom-8 sm:-right-8 w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-cyan-300 opacity-50"
+                className="absolute -bottom-6 -right-6 sm:-bottom-8 sm:-right-8 w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-cyan-300 dark:border-cyan-600 opacity-50"
               />
 
               {/* Tech stack floating badges */}
@@ -388,7 +391,7 @@ const Hero = () => {
                       : i === 2
                       ? "bottom-1/4 -left-3 sm:bottom-1/4 sm:-left-4"
                       : "-bottom-3 left-6 sm:-bottom-4 sm:left-8"
-                  } bg-gray-900 px-2 py-1 sm:px-3 sm:py-1 rounded-full shadow-md font-medium text-cyan-400 border border-cyan-400/30 z-20`}
+                  } bg-gray-900 dark:bg-gray-100 px-2 py-1 sm:px-3 sm:py-1 rounded-full shadow-md font-medium text-cyan-400 dark:text-cyan-600 border border-cyan-400/30 dark:border-cyan-600/30 z-20`}
                   whileHover={{ scale: 1.1 }}
                 >
                   {tech}

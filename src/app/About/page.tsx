@@ -17,13 +17,17 @@ const AboutSection = () => {
 
   const educationItems = [
     {
-      icon: <FaGraduationCap className="text-cyan-400 text-xl" />,
+      icon: (
+        <FaGraduationCap className="text-cyan-400 dark:text-cyan-600 text-xl" />
+      ),
       title: "Matriculation (2020)",
       institution: "Sherwood Govt. Girls Secondary School, Karachi",
       detail: "Medical Science - Board of Secondary Education Karachi",
     },
     {
-      icon: <FaBookMedical className="text-cyan-400 text-xl" />,
+      icon: (
+        <FaBookMedical className="text-cyan-400 dark:text-cyan-600 text-xl" />
+      ),
       title: "Intermediate (2022)",
       institution: "Bibi Asfa Bhutto Govt. Girls College, Karachi",
       detail: "Medical Science - Board of Intermediate Education Karachi",
@@ -33,7 +37,8 @@ const AboutSection = () => {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 md:h-[700px] px-4" id="about"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800 dark:from-gray-100 dark:via-white dark:to-gray-200 md:h-[700px] px-4"
+      id="about"
     >
       {/* Subtle floating molecules */}
       <motion.div
@@ -61,8 +66,8 @@ const AboutSection = () => {
             }}
             className={`absolute ${
               i % 3 === 0
-                ? "text-cyan-400/30 text-3xl"
-                : "text-teal-400/20 text-xl"
+                ? "text-cyan-400/30 dark:text-cyan-600/20 text-3xl"
+                : "text-teal-400/20 dark:text-teal-600/15 text-xl"
             }`}
           >
             <FaAtom />
@@ -78,21 +83,21 @@ const AboutSection = () => {
           viewport={{ once: false }}
           className="mb-12 text-center"
         >
-          <h2 className="text-4xl mt-14 md:text-5xl font-bold text-cyan-100 mb-4">
+          <h2 className="text-4xl mt-14 md:text-5xl font-bold text-cyan-100 dark:text-cyan-900 mb-4">
             Academic Background
           </h2>
-          <div className="w-20 h-1 bg-cyan-400/70 mx-auto mb-6"></div>
+          <div className="w-20 h-1 bg-cyan-400/70 dark:bg-cyan-600/70 mx-auto mb-6"></div>
           <motion.p
             style={{ y: yText }}
-            className="text-cyan-50/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            className="text-cyan-50/90 dark:text-cyan-900/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
             My journey through medical sciences has equipped me with both
-            <span className="text-cyan-400 font-medium">
+            <span className="text-cyan-400 dark:text-cyan-600 font-medium">
               {" "}
               technical knowledge{" "}
             </span>
             and{" "}
-            <span className="text-cyan-400 font-medium">
+            <span className="text-cyan-400 dark:text-cyan-600 font-medium">
               {" "}
               compassionate perspective{" "}
             </span>
@@ -108,19 +113,21 @@ const AboutSection = () => {
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
               viewport={{ once: false }}
-              className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-xl border border-cyan-400/20 hover:border-cyan-400/40 transition-all duration-300 shadow-lg backdrop-blur-sm"
+              className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 dark:from-gray-200/80 dark:to-gray-100/80 p-6 rounded-xl border border-cyan-400/20 dark:border-cyan-600/20 hover:border-cyan-400/40 dark:hover:border-cyan-600/40 transition-all duration-300 shadow-lg backdrop-blur-sm"
             >
               <div className="flex flex-col items-start">
-                <div className="bg-cyan-400/10 p-3 rounded-full mb-4 border border-cyan-400/20">
+                <div className="bg-cyan-400/10 dark:bg-cyan-600/10 p-3 rounded-full mb-4 border border-cyan-400/20 dark:border-cyan-600/20">
                   {item.icon}
                 </div>
-                <h3 className="text-2xl font-semibold text-cyan-200 mb-2">
+                <h3 className="text-2xl font-semibold text-cyan-200 dark:text-cyan-800 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-cyan-100 font-medium mb-2">
+                <p className="text-cyan-100 dark:text-cyan-900 font-medium mb-2">
                   {item.institution}
                 </p>
-                <p className="text-cyan-100/80">{item.detail}</p>
+                <p className="text-cyan-100/80 dark:text-cyan-900/80">
+                  {item.detail}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -133,12 +140,12 @@ const AboutSection = () => {
           viewport={{ once: false }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex items-center gap-2 text-cyan-400/80">
-            <div className="w-8 h-px bg-cyan-400/50"></div>
-            <FaAtom className="text-cyan-400/50" />
-            <div className="w-8 h-px bg-cyan-400/50"></div>
+          <div className="inline-flex items-center gap-2 text-cyan-400/80 dark:text-cyan-600/80">
+            <div className="w-8 h-px bg-cyan-400/50 dark:bg-cyan-600/50"></div>
+            <FaAtom className="text-cyan-400/50 dark:text-cyan-600/50" />
+            <div className="w-8 h-px bg-cyan-400/50 dark:bg-cyan-600/50"></div>
           </div>
-          <p className="text-cyan-100/80 italic mt-4 mb-10 max-w-2xl mx-auto text-lg">
+          <p className="text-cyan-100/80 dark:text-cyan-900/80 italic mt-4 mb-10 max-w-2xl mx-auto text-lg">
             "The art of medicine consists of amusing the patient while nature
             cures the disease." — Voltaire
           </p>
